@@ -45,7 +45,7 @@ namespace MvcApiPersonajesSeries.Services
 
         public async Task<List<string>> GetSeriesAsync()
         {
-            5string request = "api/Personajes/series";
+            string request = "api/Personajes/series";
             return await this.CallApiAsync<List<string>>(request);
         }
 
