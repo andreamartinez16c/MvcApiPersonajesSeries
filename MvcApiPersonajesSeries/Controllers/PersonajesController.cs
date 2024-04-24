@@ -41,7 +41,7 @@ namespace MvcApiPersonajesSeries.Controllers
             return View(personaje);
         }
 
-        [HttpPut]
+        [HttpPost]
         public async Task<IActionResult> Edit(Personaje personaje)
         {
             await this.service.UpdatePersonaje(personaje);

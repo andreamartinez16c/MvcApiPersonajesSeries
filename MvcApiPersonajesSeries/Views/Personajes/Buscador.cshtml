@@ -1,15 +1,25 @@
 ﻿@model IEnumerable<MvcApiPersonajesSeries.Models.Personaje>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Buscador";
 }
 
-<h1>Index</h1>
+<h1>Buscador</h1>
 
-<p>
-    <a class="nav-link text-dark" asp-area="" asp-controller="Personajes" asp-action="Create">Crear</a>
-</p>
-<table class="table">
+<h1>Buscador</h1>
+
+<form method="post" class="mb-3">
+    <select name="serie">
+        @foreach (string serie in ViewData["SERIES"] as List<string>)
+        {
+            <option value="@serie">@serie</option>
+        }
+    </select>
+    <button class="btn btn-primary">BUSCAR</button>
+</form>
+@if(Model != null)
+{
+    <table class="table">
     <thead>
         <tr>
             <th>
@@ -37,17 +47,19 @@
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
             <td>
-                <img src="@item.Imagen" style="width:100px" />
+                @Html.DisplayFor(modelItem => item.Imagen)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Serie)
             </td>
             <td>
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Personajes" asp-action="Details" asp-route-id="@item.Id">Detalles</a>
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Personajes" asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Personajes" asp-action="Edit" asp-route-id="@item.Id">Modificar</a>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }
     </tbody>
 </table>
+}
+
